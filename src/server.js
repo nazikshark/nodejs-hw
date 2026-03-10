@@ -19,7 +19,7 @@ export const setupServer = () => {
     })
   );
 
-  // Маршрути
+
   app.get('/notes', (req, res) => {
     res.status(200).json({
       message: 'Retrieved all notes',
@@ -37,8 +37,8 @@ export const setupServer = () => {
     throw new Error('Simulated server error');
   });
 
-  // 404 - Not Found
-  app.use('*', (req, res) => {
+  // 404 - Not Found 
+  app.use((req, res) => {
     res.status(404).json({
       message: 'Route not found',
     });
