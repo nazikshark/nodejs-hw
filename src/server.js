@@ -8,7 +8,6 @@ dotenv.config();
 export const setupServer = () => {
   const app = express();
 
-  // Middleware
   app.use(cors());
   app.use(express.json());
   app.use(
@@ -18,7 +17,6 @@ export const setupServer = () => {
       },
     })
   );
-
 
   app.get('/notes', (req, res) => {
     res.status(200).json({
@@ -37,14 +35,12 @@ export const setupServer = () => {
     throw new Error('Simulated server error');
   });
 
-  // 404 - Not Found 
   app.use((req, res) => {
     res.status(404).json({
       message: 'Route not found',
     });
   });
 
-  // 500 - Error Handler
   app.use((err, req, res, next) => {
     res.status(500).json({
       message: err.message || 'Internal Server Error',
@@ -56,3 +52,5 @@ export const setupServer = () => {
     console.log(`Server is running on port ${PORT}`);
   });
 };
+
+setupServer();
